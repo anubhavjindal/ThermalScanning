@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Thermo Scanning</string>
+
+    <string-array name="kva_array">
+        <item>"63"</item>
+        <item>"100"</item>
+        <item>"160"</item>
+        <item>"250"</item>
+        <item>"315"</item>
+        <item>"400"</item>
+        <item>"630"</item>
+        <item>"990"</item>
+        <item>"NA"</item>
+    </string-array>
+
+    <string-array name="goSwitch_array">
+        <item>"OK"</item>
+        <item>"Bypass"</item>
+        <item>"Copper strip"</item>
+        <item>"Alignment"</item>
+        <item>"Handle Broken"</item>
+    </string-array>
+
+    <string-array name="ddAssembly_array">
+        <item>"OK"</item>
+        <item>"Old"</item>
+        <item>"Broken"</item>
+        <item>"Required"</item>
+    </string-array>
+
+    <string-array name="hotspot_array">
+        <item>"N.A"</item>
+        <item>"G.O"</item>
+        <item>"D.D"</item>
+        <item>"H.T"</item>
+        <item>"L.T"</item>
+        <item>"MCCB"</item>
+        <item>"Jumper"</item>
+    </string-array>
+
+</resources>

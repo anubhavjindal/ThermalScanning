@@ -38,4 +38,11 @@
         <item>"Jumper"</item>
     </string-array>
 
+    <string-array name="earthing_array">
+        <item>"H.T ABC"</item>
+        <item>"U/G Cable"</item>
+        <item>"D.T"</item>
+        <item>"Pole"</item>
+    </string-array>
+
 </resources>

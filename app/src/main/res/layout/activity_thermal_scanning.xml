@@ -13,14 +13,14 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/feederText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textStyle="italic"
-            android:textSize="32dp"
-            android:id="@+id/feederText"/>
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/locationText"
@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter Location"
             android:inputType="textCapCharacters"
-            android:textColorHint="@android:color/black"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -129,12 +128,21 @@
 
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/hotspotText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Further details (if any)"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="165dp"
@@ -152,7 +160,6 @@
                 android:hint="(if any)"
                 android:inputType="number"
                 android:paddingTop="16dp"
-                android:textColorHint="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -177,7 +184,6 @@
                 android:hint="(in °C)"
                 android:inputType="number"
                 android:paddingTop="16dp"
-                android:textColorHint="@android:color/black"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -381,7 +387,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="NA" />
+                android:text="OK" />
 
             <RadioButton
                 android:id="@+id/open3Radio"
@@ -556,11 +562,21 @@
                 android:id="@+id/earthingToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOff="OK"
-                android:textOn="Disconnected"
+                android:backgroundTint="@color/colorPrimary"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:textOff="OK"
+                android:textOn="Disconnected" />
         </LinearLayout>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:id="@+id/earthingSpinner"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
 
         <LinearLayout
@@ -582,10 +598,10 @@
                 android:id="@+id/treeTrimmingToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOff="No"
-                android:textOn="Required"
+                android:backgroundTint="@color/colorPrimary"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:textOff="No"
+                android:textOn="Required" />
         </LinearLayout>
 
 
@@ -608,10 +624,10 @@
                 android:id="@+id/polyproToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOff="No"
-                android:textOn="Required"
+                android:backgroundTint="@color/colorPrimary"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:textOff="No"
+                android:textOn="Required" />
         </LinearLayout>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -673,8 +689,8 @@
             android:hint="Enter Remarks"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:textColorHint="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="#FF0000"/>
 
 
         <Button
@@ -683,10 +699,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="Submit"
             android:backgroundTint="@color/colorPrimary"
+            android:text="Submit"
             android:textColor="#FFFFFF"
-            android:textSize="19dp"/>
+            android:textSize="19dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -700,10 +716,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:text="View Report"
                 android:backgroundTint="@color/colorPrimary"
+                android:text="View Report"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
 
             <Button
@@ -713,14 +729,23 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Email Report"
                 android:backgroundTint="@color/colorPrimary"
+                android:text="Email Report"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Developed by Anubhav Jindal"
+            android:textColor="#4C9900"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
     </LinearLayout>
 

@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -53,19 +52,17 @@ public class ThermalScanning extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         feederName = bundle.getString("fn");
 
-//        Toast welcomeMsg = Toast.makeText(getApplicationContext(), "Developed By Anubhav Jindal for COS TPDDL", Toast.LENGTH_LONG);
-//        welcomeMsg.setGravity(Gravity.CENTER, 0, 0);
-//        welcomeMsg.show();
-
         final Spinner kvaSpinner = (Spinner) findViewById(R.id.kvaSpinner);
         final Spinner goSwitchSpinner = (Spinner) findViewById(R.id.goSwitchSpinner);
         final Spinner ddAssemblySpinner = (Spinner) findViewById(R.id.ddAssemblySpinner);
         final Spinner hotspotSpinner = (Spinner) findViewById(R.id.hotspotSpinner);
+        final Spinner earthingSpinner = (Spinner) findViewById(R.id.earthingSpinner);
 
         final EditText locationText = (EditText) findViewById(R.id.locationText);
         final EditText remarksText = (EditText) findViewById(R.id.remarksText);
         final EditText imageNumberText = (EditText) findViewById(R.id.imageNumberText);
         final EditText temperatureText = (EditText) findViewById(R.id.temperatureText);
+        final EditText hotspotText = (EditText) findViewById(R.id.hotspotText);
 
         final TextView feederText = (TextView) findViewById(R.id.feederText);
 
@@ -87,7 +84,6 @@ public class ThermalScanning extends AppCompatActivity {
         final ToggleButton polyproToggle = (ToggleButton) findViewById(R.id.polyproToggle);
         final ToggleButton circuitToggle = (ToggleButton) findViewById(R.id.circuitToggle);
 
-
         Button submitButton = (Button) findViewById(R.id.submitButton);
         Button emailButton = (Button) findViewById(R.id.emailButton);
         Button openFileButton = (Button) findViewById(R.id.openFileButton);
@@ -96,11 +92,13 @@ public class ThermalScanning extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.goSwitch_array, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.ddAssembly_array, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.hotspot_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this, R.array.earthing_array, android.R.layout.simple_spinner_item);
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         feederText.setText(feederName);
 
@@ -108,6 +106,7 @@ public class ThermalScanning extends AppCompatActivity {
         goSwitchSpinner.setAdapter(adapter2);
         ddAssemblySpinner.setAdapter(adapter3);
         hotspotSpinner.setAdapter(adapter4);
+        earthingSpinner.setAdapter(adapter5);
 
 
         hotspotSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -116,9 +115,11 @@ public class ThermalScanning extends AppCompatActivity {
                 if (position != 0) {
                     phaseLayout.setVisibility(View.VISIBLE);
                     circuitLayout.setVisibility(View.VISIBLE);
+                    hotspotText.setVisibility(View.VISIBLE);
                 } else if (position == 0) {
                     phaseLayout.setVisibility(View.GONE);
                     circuitLayout.setVisibility(View.GONE);
+                    hotspotText.setVisibility(View.GONE);
                 }
             }
 
@@ -160,6 +161,18 @@ public class ThermalScanning extends AppCompatActivity {
                 }
                 if (!isChecked) {
                     polyproRadioGroup.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        earthingToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    earthingSpinner.setVisibility(View.VISIBLE);
+                }
+                if (!isChecked) {
+                    earthingSpinner.setVisibility(View.GONE);
                 }
             }
         });
@@ -348,7 +361,7 @@ public class ThermalScanning extends AppCompatActivity {
                 Toast.makeText(ThermalScanning.this, "Response submitted successfully!", Toast.LENGTH_SHORT).show();
                 Row rown = sheet1.createRow(n);
 
-                String ddSt, olSt, breatherSt, lvcSt, mccbSt, fencingSt, barrelSt, polyproSt, phaseSt;
+                String ddSt, olSt, breatherSt, lvcSt, mccbSt, fencingSt, barrelSt, polyproSt, phaseSt,earthingSt;
                 int selectedDDRequired = ddAssemblyRadioGroup.getCheckedRadioButtonId();
                 if (selectedDDRequired == -1) {
                     ddSt = "NA";
@@ -412,6 +425,13 @@ public class ThermalScanning extends AppCompatActivity {
                     barrelSt = selectedBarrelradioButton.getText().toString();
                 }
                 int polyproStatus = polyproRadioGroup.getCheckedRadioButtonId();
+                if(earthingToggle.isChecked()){
+                    earthingSt = earthingSpinner.getSelectedItem().toString();
+                }
+                else {
+                    earthingSt = "OK";
+                }
+
                 if (polyproStatus == -1) {
                     polyproSt = "No";
                 } else {
@@ -431,7 +451,8 @@ public class ThermalScanning extends AppCompatActivity {
                 } else {
                     cn3.setCellValue(hotspotSpinner.getSelectedItem().toString()
                             + "  Phase:" + phaseSt
-                            + "  Circuit:" + circuitToggle.getText().toString());
+                            + "  Circuit:" + circuitToggle.getText().toString()
+                            + " " + hotspotText.getText().toString());
                 }
                 Cell cn4 = rown.createCell(4);
                 if(!temperatureText.getText().toString().isEmpty()) {
@@ -459,7 +480,7 @@ public class ThermalScanning extends AppCompatActivity {
                 Cell cn13 = rown.createCell(13);
                 cn13.setCellValue(barrelSt);
                 Cell cn14 = rown.createCell(14);
-                cn14.setCellValue(earthingToggle.getText().toString());
+                cn14.setCellValue(earthingSt);
                 Cell cn15 = rown.createCell(15);
                 cn15.setCellValue(treeTrimmingToggle.getText().toString());
                 Cell cn16 = rown.createCell(16);
@@ -486,8 +507,10 @@ public class ThermalScanning extends AppCompatActivity {
                 hotspotSpinner.setSelection(0);
                 imageNumberText.setText("");
                 temperatureText.setText("");
+                hotspotText.setText("");
                 ddAssemblySpinner.setSelection(0);
                 goSwitchSpinner.setSelection(0);
+                earthingSpinner.setSelection(0);
                 kvaSpinner.setSelection(0);
                 barrelRadioGroup.clearCheck();
                 breatherRadioGroup.clearCheck();

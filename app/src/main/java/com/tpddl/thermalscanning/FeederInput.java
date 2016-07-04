@@ -11,14 +11,6 @@ import android.widget.Toast;
 
 public class FeederInput extends AppCompatActivity{
 
-    public String getFeedersName() {
-        return feedersName;
-    }
-
-    public void setFeedersName(String feedersName) {
-        this.feedersName = feedersName;
-    }
-
     public String feedersName;
 
     @Override

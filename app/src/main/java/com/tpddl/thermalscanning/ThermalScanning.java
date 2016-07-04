@@ -1,12 +1,10 @@
 package com.tpddl.thermalscanning;
 
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,7 +18,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,19 +41,21 @@ import java.util.Calendar;
 public class ThermalScanning extends AppCompatActivity {
 
     protected File file;
+    FileOutputStream os = null;
+    String feederName = "report";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        FileOutputStream os = null;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thermal_scanning);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Toast welcomeMsg = Toast.makeText(getApplicationContext(), "Developed By Anubhav Jindal for COS TPDDL", Toast.LENGTH_LONG);
-        welcomeMsg.setGravity(Gravity.CENTER, 0, 0);
-        welcomeMsg.show();
+        Bundle bundle = getIntent().getExtras();
+        feederName = bundle.getString("fn");
+
+//        Toast welcomeMsg = Toast.makeText(getApplicationContext(), "Developed By Anubhav Jindal for COS TPDDL", Toast.LENGTH_LONG);
+//        welcomeMsg.setGravity(Gravity.CENTER, 0, 0);
+//        welcomeMsg.show();
 
         final Spinner kvaSpinner = (Spinner) findViewById(R.id.kvaSpinner);
         final Spinner goSwitchSpinner = (Spinner) findViewById(R.id.goSwitchSpinner);
@@ -66,6 +65,9 @@ public class ThermalScanning extends AppCompatActivity {
         final EditText locationText = (EditText) findViewById(R.id.locationText);
         final EditText remarksText = (EditText) findViewById(R.id.remarksText);
         final EditText imageNumberText = (EditText) findViewById(R.id.imageNumberText);
+        final EditText temperatureText = (EditText) findViewById(R.id.temperatureText);
+
+        final TextView feederText = (TextView) findViewById(R.id.feederText);
 
         final RadioGroup ddAssemblyRadioGroup = (RadioGroup) findViewById(R.id.ddAssemblyRadioGroup);
         final RadioGroup oilLevelRadioGroup = (RadioGroup) findViewById(R.id.oilLevelRadioGroup);
@@ -85,9 +87,6 @@ public class ThermalScanning extends AppCompatActivity {
         final ToggleButton polyproToggle = (ToggleButton) findViewById(R.id.polyproToggle);
         final ToggleButton circuitToggle = (ToggleButton) findViewById(R.id.circuitToggle);
 
-        final TextView temperatureText = (TextView) findViewById(R.id.temperatureText);
-
-        final SeekBar temperatureSeekBar = (SeekBar) findViewById(R.id.temperatureSeekBar);
 
         Button submitButton = (Button) findViewById(R.id.submitButton);
         Button emailButton = (Button) findViewById(R.id.emailButton);
@@ -103,27 +102,12 @@ public class ThermalScanning extends AppCompatActivity {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        feederText.setText(feederName);
+
         kvaSpinner.setAdapter(adapter1);
         goSwitchSpinner.setAdapter(adapter2);
         ddAssemblySpinner.setAdapter(adapter3);
         hotspotSpinner.setAdapter(adapter4);
-
-        temperatureSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                temperatureText.setText(progress + " °C");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
 
         hotspotSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -191,7 +175,7 @@ public class ThermalScanning extends AppCompatActivity {
         cs.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 
         //New Sheet
-        final Sheet sheet1 = wb.createSheet("Report");
+        final Sheet sheet1 = wb.createSheet(feederName);
 
         //Generate Column Headings
         Row row = sheet1.createRow(0);
@@ -355,6 +339,7 @@ public class ThermalScanning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 if (locationText.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Location is required!", Toast.LENGTH_SHORT).show();
                     return;
@@ -449,7 +434,12 @@ public class ThermalScanning extends AppCompatActivity {
                             + "  Circuit:" + circuitToggle.getText().toString());
                 }
                 Cell cn4 = rown.createCell(4);
-                cn4.setCellValue(temperatureText.getText().toString());
+                if(!temperatureText.getText().toString().isEmpty()) {
+                    cn4.setCellValue(temperatureText.getText().toString() + " °C");
+                }
+                else {
+                    cn4.setCellValue("");
+                }
                 Cell cn5 = rown.createCell(5);
                 cn5.setCellValue(goSwitchSpinner.getSelectedItem().toString());
                 Cell cn6 = rown.createCell(6);
@@ -492,11 +482,10 @@ public class ThermalScanning extends AppCompatActivity {
                 }
                 n++;
 
-                locationText.requestFocus();
-                locationText.setSelected(true);
+                locationText.setText(locationText.getText().toString());
                 hotspotSpinner.setSelection(0);
                 imageNumberText.setText("");
-                temperatureSeekBar.setProgress(0);
+                temperatureText.setText("");
                 ddAssemblySpinner.setSelection(0);
                 goSwitchSpinner.setSelection(0);
                 kvaSpinner.setSelection(0);
@@ -513,7 +502,8 @@ public class ThermalScanning extends AppCompatActivity {
                 polyproToggle.setChecked(false);
                 circuitToggle.setChecked(false);
                 remarksText.setText("");
-
+                locationText.requestFocus();
+                locationText.setSelected(true);
 
             }
 
@@ -521,7 +511,7 @@ public class ThermalScanning extends AppCompatActivity {
 
 
         try {
-            if (os != null)
+            if (null != os)
                 os.close();
         }
         catch (Exception ex) {
@@ -541,9 +531,17 @@ public class ThermalScanning extends AppCompatActivity {
                         if (file.exists()) {
                             Toast.makeText(getApplicationContext(), "Report was saved to device storage at Android/data/com.tpddl.thermalscanning/files", Toast.LENGTH_LONG).show();
                             finish();
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         } else if (!file.exists()) {
                             Toast.makeText(getApplicationContext(), "You did not submit any data this time. See you again :)", Toast.LENGTH_LONG).show();
                             finish();
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         }
                     }
                 })

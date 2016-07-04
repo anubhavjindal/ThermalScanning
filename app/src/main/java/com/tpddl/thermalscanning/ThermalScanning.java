@@ -75,6 +75,7 @@ public class ThermalScanning extends AppCompatActivity {
         final RadioGroup barrelRadioGroup = (RadioGroup) findViewById(R.id.barrelRadioGroup);
         final RadioGroup polyproRadioGroup = (RadioGroup) findViewById(R.id.polyproRadioGroup);
         final RadioGroup phaseRadioGroup = (RadioGroup) findViewById(R.id.phaseRadioGroup);
+        final RadioGroup circuitRadioGroup = (RadioGroup) findViewById(R.id.circuitRadioGroup);
 
         final LinearLayout circuitLayout = (LinearLayout) findViewById(R.id.circuitLayout);
         final LinearLayout phaseLayout = (LinearLayout) findViewById(R.id.phaseLayout);
@@ -82,7 +83,6 @@ public class ThermalScanning extends AppCompatActivity {
         final ToggleButton earthingToggle = (ToggleButton) findViewById(R.id.earthingToggle);
         final ToggleButton treeTrimmingToggle = (ToggleButton) findViewById(R.id.treeTrimmingToggle);
         final ToggleButton polyproToggle = (ToggleButton) findViewById(R.id.polyproToggle);
-        final ToggleButton circuitToggle = (ToggleButton) findViewById(R.id.circuitToggle);
 
         Button submitButton = (Button) findViewById(R.id.submitButton);
         Button emailButton = (Button) findViewById(R.id.emailButton);
@@ -361,7 +361,7 @@ public class ThermalScanning extends AppCompatActivity {
                 Toast.makeText(ThermalScanning.this, "Response submitted successfully!", Toast.LENGTH_SHORT).show();
                 Row rown = sheet1.createRow(n);
 
-                String ddSt, olSt, breatherSt, lvcSt, mccbSt, fencingSt, barrelSt, polyproSt, phaseSt,earthingSt;
+                String ddSt, olSt, breatherSt, lvcSt, mccbSt, fencingSt, barrelSt, polyproSt, phaseSt,earthingSt,circuitSt;
                 int selectedDDRequired = ddAssemblyRadioGroup.getCheckedRadioButtonId();
                 if (selectedDDRequired == -1) {
                     ddSt = "NA";
@@ -376,6 +376,14 @@ public class ThermalScanning extends AppCompatActivity {
                 } else {
                     RadioButton selectedPhaseRadio = (RadioButton) findViewById(selectedPhase);
                     phaseSt = selectedPhaseRadio.getText().toString();
+                }
+
+                int selectedCircuit = circuitRadioGroup.getCheckedRadioButtonId();
+                if (selectedCircuit == -1) {
+                    circuitSt = " ";
+                } else {
+                    RadioButton selectedCircuitRadio = (RadioButton) findViewById(selectedCircuit);
+                    circuitSt = selectedCircuitRadio.getText().toString();
                 }
 
                 int selectedOilLevel = oilLevelRadioGroup.getCheckedRadioButtonId();
@@ -426,7 +434,7 @@ public class ThermalScanning extends AppCompatActivity {
                 }
                 int polyproStatus = polyproRadioGroup.getCheckedRadioButtonId();
                 if(earthingToggle.isChecked()){
-                    earthingSt = earthingSpinner.getSelectedItem().toString();
+                    earthingSt = "Disconnected: " + earthingSpinner.getSelectedItem().toString();
                 }
                 else {
                     earthingSt = "OK";
@@ -451,7 +459,7 @@ public class ThermalScanning extends AppCompatActivity {
                 } else {
                     cn3.setCellValue(hotspotSpinner.getSelectedItem().toString()
                             + "  Phase:" + phaseSt
-                            + "  Circuit:" + circuitToggle.getText().toString()
+                            + " " + circuitSt
                             + " " + hotspotText.getText().toString());
                 }
                 Cell cn4 = rown.createCell(4);
@@ -515,15 +523,16 @@ public class ThermalScanning extends AppCompatActivity {
                 barrelRadioGroup.clearCheck();
                 breatherRadioGroup.clearCheck();
                 ddAssemblyRadioGroup.clearCheck();
+                phaseRadioGroup.clearCheck();
                 fencingRadioGroup.clearCheck();
                 lvCoverRadioGroup.clearCheck();
+                circuitRadioGroup.clearCheck();
                 mccbRadioGroup.clearCheck();
                 oilLevelRadioGroup.clearCheck();
                 polyproRadioGroup.clearCheck();
                 earthingToggle.setChecked(false);
                 treeTrimmingToggle.setChecked(false);
                 polyproToggle.setChecked(false);
-                circuitToggle.setChecked(false);
                 remarksText.setText("");
                 locationText.requestFocus();
                 locationText.setSelected(true);

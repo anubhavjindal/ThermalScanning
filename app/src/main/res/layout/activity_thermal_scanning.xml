@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:hint="Enter Location"
             android:inputType="textCapCharacters"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="#6666FF"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,7 +124,8 @@
                 android:id="@+id/circuitRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <RadioButton
                     android:id="@+id/icRadio"
@@ -761,6 +763,15 @@
             android:textColor="#4C9900"
             android:textStyle="bold"
             android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Contact: anubhav301294@gmail.com"
+            android:textColor="#66CC00"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

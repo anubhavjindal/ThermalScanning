@@ -14,8 +14,9 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="32dp"
+        android:inputType="textCapWords"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#4A148C"
         android:id="@+id/feederInputText"/>
 
     <Button
@@ -25,6 +26,7 @@
         android:layout_gravity="center"
         android:id="@+id/feederSubmit"
         android:backgroundTint="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="30dp"/>
 
 </LinearLayout>

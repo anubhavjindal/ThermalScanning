@@ -222,50 +222,46 @@ public class ThermalScanning extends AppCompatActivity {
         c.setCellStyle(cs);
 
         c = row.createCell(7);
-        c.setCellValue("D.D Required");
-        c.setCellStyle(cs);
-
-        c = row.createCell(8);
         c.setCellValue("Oil Level Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(9);
+        c = row.createCell(8);
         c.setCellValue("Breather Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(10);
+        c = row.createCell(9);
         c.setCellValue("L.V Cover Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(11);
+        c = row.createCell(10);
         c.setCellValue("MCCB Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(12);
+        c = row.createCell(11);
         c.setCellValue("Fencing Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(13);
+        c = row.createCell(12);
         c.setCellValue("Barrel Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(14);
+        c = row.createCell(13);
         c.setCellValue("Earthing Status");
         c.setCellStyle(cs);
 
-        c = row.createCell(15);
+        c = row.createCell(14);
         c.setCellValue("Tree Trimming");
         c.setCellStyle(cs);
 
-        c = row.createCell(16);
+        c = row.createCell(15);
         c.setCellValue("Polypro Required");
         c.setCellStyle(cs);
 
-        c = row.createCell(17);
+        c = row.createCell(16);
         c.setCellValue("Image Number");
         c.setCellStyle(cs);
 
-        c = row.createCell(18);
+        c = row.createCell(17);
         c.setCellValue("Remarks");
         c.setCellStyle(cs);
 
@@ -277,17 +273,16 @@ public class ThermalScanning extends AppCompatActivity {
         sheet1.setColumnWidth(5, (15 * 400));
         sheet1.setColumnWidth(6, (15 * 350));
         sheet1.setColumnWidth(7, (15 * 300));
-        sheet1.setColumnWidth(8, (15 * 300));
-        sheet1.setColumnWidth(9, (15 * 350));
-        sheet1.setColumnWidth(10, (15 * 300));
-        sheet1.setColumnWidth(11, (15 * 350));
+        sheet1.setColumnWidth(8, (15 * 350));
+        sheet1.setColumnWidth(9, (15 * 300));
+        sheet1.setColumnWidth(10, (15 * 350));
+        sheet1.setColumnWidth(11, (15 * 250));
         sheet1.setColumnWidth(12, (15 * 250));
-        sheet1.setColumnWidth(13, (15 * 250));
+        sheet1.setColumnWidth(13, (15 * 450));
         sheet1.setColumnWidth(14, (15 * 250));
-        sheet1.setColumnWidth(15, (15 * 250));
-        sheet1.setColumnWidth(16, (15 * 350));
-        sheet1.setColumnWidth(17, (15 * 250));
-        sheet1.setColumnWidth(18, (15 * 600));
+        sheet1.setColumnWidth(15, (15 * 350));
+        sheet1.setColumnWidth(16, (15 * 250));
+        sheet1.setColumnWidth(17, (15 * 600));
 
         final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
@@ -364,7 +359,7 @@ public class ThermalScanning extends AppCompatActivity {
                 String ddSt, olSt, breatherSt, lvcSt, mccbSt, fencingSt, barrelSt, polyproSt, phaseSt,earthingSt,circuitSt;
                 int selectedDDRequired = ddAssemblyRadioGroup.getCheckedRadioButtonId();
                 if (selectedDDRequired == -1) {
-                    ddSt = "NA";
+                    ddSt = " ";
                 } else {
                     RadioButton selectedDDradioButton = (RadioButton) findViewById(selectedDDRequired);
                     ddSt = selectedDDradioButton.getText().toString();
@@ -372,7 +367,7 @@ public class ThermalScanning extends AppCompatActivity {
 
                 int selectedPhase = phaseRadioGroup.getCheckedRadioButtonId();
                 if (selectedPhase == -1) {
-                    phaseSt = "R";
+                    phaseSt = " ";
                 } else {
                     RadioButton selectedPhaseRadio = (RadioButton) findViewById(selectedPhase);
                     phaseSt = selectedPhaseRadio.getText().toString();
@@ -472,30 +467,28 @@ public class ThermalScanning extends AppCompatActivity {
                 Cell cn5 = rown.createCell(5);
                 cn5.setCellValue(goSwitchSpinner.getSelectedItem().toString());
                 Cell cn6 = rown.createCell(6);
-                cn6.setCellValue(ddAssemblySpinner.getSelectedItem().toString());
-                Cell cn7 = rown.createCell(7);
-                cn7.setCellValue(ddSt);
-                Cell cn8 = rown.createCell(8);
+                cn6.setCellValue(ddAssemblySpinner.getSelectedItem().toString() + " " + ddSt);
+                Cell cn8 = rown.createCell(7);
                 cn8.setCellValue(olSt);
-                Cell cn9 = rown.createCell(9);
+                Cell cn9 = rown.createCell(8);
                 cn9.setCellValue(breatherSt);
-                Cell cn10 = rown.createCell(10);
+                Cell cn10 = rown.createCell(9);
                 cn10.setCellValue(lvcSt);
-                Cell cn11 = rown.createCell(11);
+                Cell cn11 = rown.createCell(10);
                 cn11.setCellValue(mccbSt);
-                Cell cn12 = rown.createCell(12);
+                Cell cn12 = rown.createCell(11);
                 cn12.setCellValue(fencingSt);
-                Cell cn13 = rown.createCell(13);
+                Cell cn13 = rown.createCell(12);
                 cn13.setCellValue(barrelSt);
-                Cell cn14 = rown.createCell(14);
+                Cell cn14 = rown.createCell(13);
                 cn14.setCellValue(earthingSt);
-                Cell cn15 = rown.createCell(15);
+                Cell cn15 = rown.createCell(14);
                 cn15.setCellValue(treeTrimmingToggle.getText().toString());
-                Cell cn16 = rown.createCell(16);
+                Cell cn16 = rown.createCell(15);
                 cn16.setCellValue(polyproSt);
-                Cell cn17 = rown.createCell(17);
+                Cell cn17 = rown.createCell(16);
                 cn17.setCellValue(imageNumberText.getText().toString());
-                Cell cn18 = rown.createCell(18);
+                Cell cn18 = rown.createCell(17);
                 cn18.setCellValue(remarksText.getText().toString());
 
                 FileOutputStream os2 = null;

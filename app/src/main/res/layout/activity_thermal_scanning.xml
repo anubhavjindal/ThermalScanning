@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="30dp"
+            android:textSize="26dp"
             android:textStyle="bold" />
 
         <EditText
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Location"
             android:inputType="textCapCharacters"
-            android:textSize="16sp"
+            android:textSize="18dp"
             android:textColor="#6666FF"/>
 
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Select Hotspot"
-                android:textColor="@android:color/black"
+                android:textColor="#d50000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:visibility="gone">
 
             <TextView
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Select Phase"
-                android:textColor="@android:color/black"
+                android:textColor="#ff1744"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Select Circuit"
-                android:textColor="@android:color/black"
+                android:textColor="#ff8a80"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -149,7 +149,7 @@
             android:id="@+id/hotspotText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Further details (if any)"
+            android:hint="Further details of Hotspot (if any)"
             android:paddingTop="16dp"
             android:textSize="16sp"
             android:visibility="gone" />
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Image Number"
-                android:textColor="@android:color/black"
+                android:textColor="#00695C"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Temperature"
-                android:textColor="@android:color/black"
+                android:textColor="#1976D2"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="Select KVA"
-                android:textColor="@android:color/black"
+                android:textColor="#006064"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -241,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="G.O Switch Status"
-                android:textColor="@android:color/black"
+                android:textColor="#00838F"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -264,7 +264,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="16dp"
                 android:text="DD Assembly Status"
-                android:textColor="@android:color/black"
+                android:textColor="#0097A7"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -311,7 +311,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="Oil Level Status"
-            android:textColor="@android:color/black"
+            android:textColor="#00ACC1"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -350,7 +350,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="Breather Status"
-            android:textColor="@android:color/black"
+            android:textColor="#F57F17"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -389,7 +389,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="LV Cover Status"
-            android:textColor="@android:color/black"
+            android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -428,7 +428,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="MCCB Status"
-            android:textColor="@android:color/black"
+            android:textColor="#9E9D24"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -474,7 +474,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="Fencing Status"
-            android:textColor="@android:color/black"
+            android:textColor="#455A64"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -520,7 +520,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:text="Barrel Status"
-            android:textColor="@android:color/black"
+            android:textColor="#607D8B"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -571,7 +571,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:text="Earthing Status"
-                android:textColor="@android:color/black"
+                android:textColor="#FFB300"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -607,7 +607,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:text="Tree trimming"
-                android:textColor="@android:color/black"
+                android:textColor="#795548"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -633,7 +633,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:text="Polypro Required"
-                android:textColor="@android:color/black"
+                android:textColor="#BF360C"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

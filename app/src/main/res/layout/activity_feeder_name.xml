@@ -10,14 +10,27 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ENTER FEEDER NAME"
+        android:hint="ENTER ZONE"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="32dp"
         android:inputType="textCapWords"
         android:textStyle="bold"
         android:textColor="#4A148C"
-        android:id="@+id/feederInputText"/>
+        android:id="@+id/zoneInputText"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ENTER FEEDER NAME"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="textCapWords"
+        android:textStyle="bold"
+        android:textColor="#00838F"
+        android:id="@+id/feederInputText"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -25,8 +38,8 @@
         android:text="SUBMIT"
         android:layout_gravity="center"
         android:id="@+id/feederSubmit"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#00BCD4"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

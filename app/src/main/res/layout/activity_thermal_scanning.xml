@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#4527A0"
             android:textSize="26dp"
             android:textStyle="bold" />
 
@@ -571,7 +571,7 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:text="Earthing Status"
-                android:textColor="#FFB300"
+                android:textColor="#2196F3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -579,7 +579,7 @@
                 android:id="@+id/earthingToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="#4527A0"
                 android:textColor="#FFFFFF"
                 android:textOff="OK"
                 android:textOn="Disconnected" />
@@ -615,7 +615,7 @@
                 android:id="@+id/treeTrimmingToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="#4527A0"
                 android:textColor="#FFFFFF"
                 android:textOff="No"
                 android:textOn="Required" />
@@ -641,7 +641,7 @@
                 android:id="@+id/polyproToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="#4527A0"
                 android:textColor="#FFFFFF"
                 android:textOff="No"
                 android:textOn="Required" />
@@ -716,7 +716,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="#4527A0"
             android:text="Submit"
             android:textColor="#FFFFFF"
             android:textSize="19dp" />
@@ -733,7 +733,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="#4527A0"
                 android:text="View Report"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp" />
@@ -746,7 +746,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="#4527A0"
                 android:text="Email Report"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp" />

@@ -27,9 +27,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,6 +44,7 @@ public class ThermalScanning extends AppCompatActivity {
     protected File file;
     FileOutputStream os = null;
     String feederName = "report";
+    String zoneName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class ThermalScanning extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         feederName = bundle.getString("fn");
+        zoneName = bundle.getString("zonen");
 
         final Spinner kvaSpinner = (Spinner) findViewById(R.id.kvaSpinner);
         final Spinner goSwitchSpinner = (Spinner) findViewById(R.id.goSwitchSpinner);
@@ -182,16 +186,31 @@ public class ThermalScanning extends AppCompatActivity {
 
         Cell c = null;
 
+        Font font = wb.createFont();
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        font.setFontHeight((short) 400);
+        font.setColor(HSSFColor.WHITE.index);
         //Styling
         CellStyle cs = wb.createCellStyle();
+        CellStyle cs2 = wb.createCellStyle();
+        cs2.setFont(font);
+        cs2.setAlignment(CellStyle.ALIGN_CENTER);
+        cs2.setFillForegroundColor(HSSFColor.GREEN.index);
+        cs2.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
         cs.setFillForegroundColor(HSSFColor.YELLOW.index);
         cs.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 
         //New Sheet
         final Sheet sheet1 = wb.createSheet(feederName);
 
+        Row row0 = sheet1.createRow(0);
+        sheet1.addMergedRegion(new CellRangeAddress(0,0,0,17));
+        row0.setHeight((short) 500);
+        c = row0.createCell(0);
+        c.setCellStyle(cs2);
+        c.setCellValue("THERMAL SCANNING REPORT FOR "+feederName+" FEEDER, ZONE : "+zoneName);
         //Generate Column Headings
-        Row row = sheet1.createRow(0);
+        Row row = sheet1.createRow(1);
 
         c = row.createCell(0);
         c.setCellValue("S.No");
@@ -342,7 +361,7 @@ public class ThermalScanning extends AppCompatActivity {
 
         submitButton.setOnClickListener(new View.OnClickListener() {
 
-            int n = 1;
+            int n = 2;
 
             @Override
             public void onClick(View v) {
@@ -443,7 +462,7 @@ public class ThermalScanning extends AppCompatActivity {
                 }
 
                 Cell cn0 = rown.createCell(0);
-                cn0.setCellValue(n);
+                cn0.setCellValue(n-1);
                 Cell cn1 = rown.createCell(1);
                 cn1.setCellValue(locationText.getText().toString());
                 Cell cn2 = rown.createCell(2);

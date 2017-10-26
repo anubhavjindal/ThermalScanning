@@ -1,0 +1,2 @@
+# ThermalScanning
+This is an Android application that was developed while I was an intern at Tata Power Delhi Distribution Limited. It is used for Condition Based Maintenance of transformers which supply electricity. This application automates the process of report generation and provides an easy to use iterface for entering data. Thermo Scanning has helped save over 2000 man-hours that were spent in the process and has been in active use at TPDDL.

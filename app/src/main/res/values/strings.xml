@@ -2,6 +2,10 @@
     <string name="app_name">Thermo Scanning</string>
 
     <string-array name="kva_array">
+        <item>"NA"</item>
+        <item>"16"</item>
+        <item>"25"</item>
+        <item>"50"</item>
         <item>"63"</item>
         <item>"100"</item>
         <item>"160"</item>
@@ -10,7 +14,6 @@
         <item>"400"</item>
         <item>"630"</item>
         <item>"990"</item>
-        <item>"NA"</item>
     </string-array>
 
     <string-array name="goSwitch_array">
